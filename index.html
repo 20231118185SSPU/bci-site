@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>监碳司 BCI · 项目进度可视化</title>
+<meta name="description" content="监碳司(Bureau of Carbon Intelligence)——基于深度学习的数据中心全生命周期碳效评估与算电协同优化平台，项目进度可视化看板。">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='24' fill='%2300e5a0'/%3E%3Ctext x='50' y='68' font-size='52' font-weight='bold' text-anchor='middle' fill='%2304140f' font-family='sans-serif'%3EB%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<div class="scroll-bar" id="scrollBar"></div>
+
+<div class="bg-fx">
+  <div class="blob b1"></div><div class="blob b2"></div>
+  <div class="blob b3"></div><div class="blob b4"></div>
+  <div class="grid-fx"></div><div class="noise-fx"></div>
+</div>
+
+<nav class="nav" id="nav">
+  <div class="container nav-in">
+    <a class="brand" href="#top" style="text-decoration:none;color:inherit">
+      <span class="brand-mark">BCI</span>
+      <span>监碳司<small>BUREAU OF CARBON INTELLIGENCE</small></span>
+    </a>
+    <button class="nav-toggle" id="navToggle" aria-label="菜单">☰</button>
+    <div class="nav-links" id="navLinks">
+      <a href="#progress">进度</a>
+      <a href="#timeline">时间线</a>
+      <a href="#architecture">架构</a>
+      <a href="#models">模型</a>
+      <a href="#experiment">实验</a>
+      <a href="#proposal">申报书</a>
+      <a href="#roadmap">路线</a>
+      <a href="#papers">文献</a>
+      <a href="#scoring">评分</a>
+      <a href="#repo">仓库</a>
+      <a class="nav-cta" id="repoLink" href="#" target="_blank" rel="noopener">
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.4 7.4 0 0 1 2-.27c.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg>
+        仓库
+      </a>
+    </div>
+  </div>
+</nav>
+
+<div class="wrap" id="top">
+
+<!-- ================= HERO ================= -->
+<section class="hero">
+  <div class="container">
+    <div class="eyebrow rv"><span class="dot"></span> 首届全国大学生零碳科技创新大赛 · 开放赛道 · 智能控碳</div>
+    <h1 class="rv">监碳司<span class="en">Bureau of Carbon Intelligence</span></h1>
+    <p class="sub rv">基于深度学习的数据中心<strong>全生命周期碳效评估</strong>与<strong>算电协同优化</strong>平台。以 LCA 补全被忽略的设备体现碳，以 TFT 预测驱动 DQN 调度，把「算电协同」从政策口号做成可运行的评估优化工具。</p>
+    <p class="tagline rv">用 LCA 把碳算清楚，用 TFT + DQN 把碳降下去。</p>
+    <div class="badges rv" id="heroBadges"></div>
+    <div class="stats rv" id="statStrip"></div>
+  </div>
+</section>
+
+<!-- ================= PROGRESS ================= -->
+<section id="progress">
+  <div class="container">
+    <div class="sec-head rv">
+      <div class="sec-num">01 / 总体进度</div>
+      <h2>研究先行，工程待启</h2>
+      <p>项目已完成从选题收敛、技术选型到文献通读的全部前置工作，决策链条完整留痕；申报书完成基本信息与项目简介，技术实现尚未开工——这是当前进度的真实分布。</p>
+    </div>
+    <div class="rings" id="rings"></div>
+    <div class="overall rv" id="overall"></div>
+  </div>
+</section>
+
+<!-- ================= TIMELINE ================= -->
+<section id="timeline">
+  <div class="container">
+    <div class="sec-head rv">
+      <div class="sec-num">02 / 里程碑</div>
+      <h2>从 15 个候选到一个定名</h2>
+      <p>仓库共 5 次提交，横跨 2026-08-20 至 08-30；此前 07-09 的选题与核查决策虽早于建仓，但完整归档在 <code>.agents/memory</code> 中，一并列入时间线。</p>
+    </div>
+    <div class="tl" id="tlBox"></div>
+  </div>
+</section>
+
+<!-- ================= ARCHITECTURE ================= -->
+<section id="architecture">
+  <div class="container">
+    <div class="sec-head rv">
+      <div class="sec-num">03 / 技术架构</div>
+      <h2>评估 — 预测 — 优化，三层四模型</h2>
+      <p>数据流形成闭环：感知电网碳强度、认知任务能耗、决策任务编排、评估全生命周期碳效，每一层都留有可解释性出口以对应评审「计算逻辑透明、结果可复核」的硬性要求。</p>
+    </div>
+    <div class="arch" id="arch"></div>
+    <div class="loop rv" id="loop"></div>
+  </div>
+</section>
+
+<!-- ================= MODELS ================= -->
+<section id="models">
+  <div class="container">
+    <div class="sec-head rv">
+      <div class="sec-num">04 / 模型选型</div>
+      <h2>每一个选择都写明了否决项</h2>
+      <p>选型不是罗列时髦模型，而是在样本量、可解释性与答辩风险之间取舍。纯贪心被明确否决，MADRL 因需要电力系统建模而放弃——这些否决理由同样归档在决策记忆中。</p>
+    </div>
+    <div class="models" id="modelGrid"></div>
+  </div>
+</section>
+
+<!-- ================= EXPERIMENT ================= -->
+<section id="experiment">
+  <div class="container">
+    <div class="sec-head rv">
+      <div class="sec-num">05 / 对比实验</div>
+      <h2>DQN 比贪心多出的，是「向前看」</h2>
+      <p>四组调度策略在真实碳强度历史数据构建的 Gym 模拟环境中对比。下图为设计阶段的预期减碳区间，实验尚未执行——数值将在阶段二完成后以实测结果替换。</p>
+    </div>
+    <div class="exp" id="exp"></div>
+    <div class="exp-axis"><span>0%</span><span>10%</span><span>20%</span><span>30%</span><span>40%</span></div>
+    <div class="exp-note rv" id="expNote"></div>
+  </div>
+</section>
+
+<!-- ================= INNOVATIONS ================= -->
+<section id="innovations">
+  <div class="container">
+    <div class="sec-head rv">
+      <div class="sec-num">06 / 创新点</div>
+      <h2>四个可被追问的差异化主张</h2>
+      <p>对标评审 20 分创新性指标，每一条都能落到具体方法学依据与可复核的数据来源上。</p>
+    </div>
+    <div class="innov" id="innov"></div>
+  </div>
+</section>
+
+<!-- ================= FACTS ================= -->
+<section id="facts">
+  <div class="container">
+    <div class="sec-head rv">
+      <div class="sec-num">07 / 数据核查</div>
+      <h2>7 项声明，4 项确认，3 项修正</h2>
+      <p>2026-07-09 并行启动 8 个智能体核查关键数据，耗时约 6.7 分钟。所有修正均已落实到项目简介定稿中，估算值一律标注来源与假设条件。</p>
+    </div>
+    <div class="facts" id="factGrid"></div>
+  </div>
+</section>
+
+<!-- ================= PROPOSAL ================= -->
+<section id="proposal">
+  <div class="container">
+    <div class="sec-head rv">
+      <div class="sec-num">08 / 申报书</div>
+      <h2>13 条栏目，已定稿 6 条</h2>
+      <p>基本信息 5 项与项目简介已逐条与用户确认定稿；剩余 7 个栏目中，「四、项目研究内容」（≤5000 字）体量最大，是下一阶段的主要工作面。</p>
+    </div>
+    <div class="split">
+      <div class="checklist rv" id="checklist"></div>
+      <div class="quote rv">
+        <h4>一、项目简介 <span class="wc">746 / 800 字 · 已定稿</span></h4>
+        <p>随着 AI 产业爆发式增长，数据中心能耗急剧攀升。据 IEA 统计，2025 年全球数据中心用电量达 485 太瓦时，占全球电力的 1.5%，预计 2030 年翻倍至 950 太瓦时。即便以效率著称的 DeepSeek-V3，单次训练仍消耗 278.8 万 GPU 小时、产生约 545 吨 CO₂ 当量……然而当前碳核算存在两大缺陷：一是仅关注运营期用电（Scope 2），忽略设备制造的体现碳——在可再生能源供电的数据中心中，体现碳可占生命周期碳排放的 30%—50%；二是缺乏碳感知调度能力，未将电网碳强度时空变化纳入算力任务编排。</p>
+        <p>本项目采用「评估—预测—优化」三层架构。评估层基于 ISO 14040/14044 LCA 方法论，建立覆盖建设、设备制造、运营、退役四阶段的碳足迹计量模型，引入 CUE 指标补充传统 PUE。预测层利用 Temporal Fusion Transformer 预测区域电网 24 小时碳强度，采用 LightGBM 预测训练任务能耗。优化层基于 DQN 深度强化学习，学习碳排放最小化的时移与空间调度策略。</p>
+        <div class="src">节选自 <code>RESEARCH.md</code> 第八节定稿内容 · 数据核查状态：全部通过（2026-07-09）</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= ROADMAP ================= -->
+<section id="roadmap">
+  <div class="container">
+    <div class="sec-head rv">
+      <div class="sec-num">09 / 实施路线</div>
+      <h2>五周四阶段，20 项任务待启动</h2>
+      <p>从排放因子数据库到 Streamlit 平台，再到路演视频，全部任务均已拆解到可执行粒度，但截至最新提交仍全部处于待办状态——仓库中尚无任何代码文件。</p>
+    </div>
+    <div class="roadmap" id="roadGrid"></div>
+  </div>
+</section>
+
+<!-- ================= PAPERS ================= -->
+<section id="papers">
+  <div class="container">
+    <div class="sec-head rv">
+      <div class="sec-num">10 / 文献库</div>
+      <h2>22 篇核心文献，逐篇结构化通读</h2>
+      <p>每篇均按「核心内容 / 关键数据 / 与本项目关系」三段式总结，产出 34KB 笔记（<code>summaries_batch1–3.md</code>），直接为申报书的研究现状与参数设定供料。</p>
+    </div>
+    <div class="filters rv" id="filters"></div>
+    <div class="papers" id="paperGrid"></div>
+  </div>
+</section>
+
+<!-- ================= SCORING ================= -->
+<section id="scoring">
+  <div class="container">
+    <div class="sec-head rv">
+      <div class="sec-num">11 / 评分预估</div>
+      <h2>对标函评五项指标的自评</h2>
+      <p>依据竞赛规则中本科生组开放赛道的函评权重逐项自评。深色为保守下限，浅色区间为乐观上限——科学性 30 分是最大分仓，也是 TFT + DQN + LCA 方法论规范性的主要着力点。</p>
+    </div>
+    <div class="score-grid">
+      <div class="score-rows rv" id="scoreRows"></div>
+      <div class="score-total rv" id="scoreTotal"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= MEMORY ================= -->
+<section id="memory">
+  <div class="container">
+    <div class="sec-head rv">
+      <div class="sec-num">12 / 决策档案</div>
+      <h2>上下文可以清空，决策不会丢失</h2>
+      <p>仓库内置 <code>.agents/</code> 记忆系统：决策、核查、参考、反馈四类档案共 8 份，确保任何一次上下文重置后都能无缝衔接原有推理链。</p>
+    </div>
+    <div class="mem" id="mem"></div>
+  </div>
+</section>
+
+<!-- ================= REPO ================= -->
+<section id="repo">
+  <div class="container">
+    <div class="sec-head rv">
+      <div class="sec-num">13 / 仓库结构</div>
+      <h2>42 个文件，66.5 MB</h2>
+      <p>目前仓库是一个「研究档案库」而非代码库：文档、文献与竞赛材料构成全部内容，源码目录尚待建立。</p>
+    </div>
+    <div class="tree rv" id="tree"></div>
+  </div>
+</section>
+
+<!-- ================= RISKS ================= -->
+<section id="risks">
+  <div class="container">
+    <div class="sec-head rv">
+      <div class="sec-num">14 / 风险与下一步</div>
+      <h2>诚实标注差距，比粉饰进度更有用</h2>
+      <p>以下为依据仓库现状梳理的待办风险，按优先级排序。</p>
+    </div>
+    <div class="risks" id="riskGrid"></div>
+  </div>
+</section>
+
+<footer>
+  <div class="container foot">
+    <div>
+      <div class="brand">
+        <span class="brand-mark">BCI</span>
+        <span>监碳司<small>BUREAU OF CARBON INTELLIGENCE</small></span>
+      </div>
+      <p>本页面所有数据均自动提取自私有仓库 <a id="footRepo" href="#" target="_blank" rel="noopener">MoYeRanqianzhi/BCI</a> 的文档、提交历史与记忆档案，未作任何主观夸大。进度状态截至 <code>master @ 0cdcb6c</code>。</p>
+      <div class="kw" id="kw"></div>
+    </div>
+    <div class="foot-meta" id="footMeta"></div>
+    <div class="sync-note" id="syncNote"></div>
+  </div>
+</footer>
+
+</div>
+
+<script src="assets/data.js"></script>
+<script src="assets/app.js"></script>
+</body>
+</html>
